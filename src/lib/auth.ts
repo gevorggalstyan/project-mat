@@ -2,7 +2,6 @@ import "server-only";
 
 import { headers } from "next/headers";
 import { UserIdentity } from "./user";
-import { env } from "./env";
 
 const CF_EMAIL_HEADER = "cf-access-authenticated-user-email";
 const CF_NAME_HEADER = "cf-access-authenticated-user-name";
@@ -20,11 +19,15 @@ export async function getUserIdentity(): Promise<UserIdentity | null> {
     };
   }
 
-  // In local development, use fallback identity
-  if (env.LOCAL_DEV_IDENTITY_ENABLED && env.LOCAL_DEV_USER_EMAIL) {
+  // In local development only (NODE_ENV !== 'production'), use fallback identity
+  // This check happens at runtime, not build time
+  const isLocalDev = process.env.NODE_ENV !== "production" && 
+                     process.env.LOCAL_DEV_IDENTITY_ENABLED === "true";
+  
+  if (isLocalDev && process.env.LOCAL_DEV_USER_EMAIL) {
     return {
-      email: env.LOCAL_DEV_USER_EMAIL,
-      name: env.LOCAL_DEV_USER_NAME,
+      email: process.env.LOCAL_DEV_USER_EMAIL,
+      name: process.env.LOCAL_DEV_USER_NAME,
       source: "local",
     };
   }
