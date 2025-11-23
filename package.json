@@ -17,6 +17,7 @@
 		"@ant-design/icons": "^6.1.0",
 		"@opennextjs/cloudflare": "^1.13.1",
 		"antd": "^6.0.0",
+		"nanoid": "^5.1.6",
 		"next": "16.0.3",
 		"nuqs": "^2.8.1",
 		"react": "19.2.0",
