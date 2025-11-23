@@ -20,6 +20,20 @@
       "pattern": "dcs.yot.li",
       "custom_domain": true
     }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "project-mat-db",
+      "database_id": "7aaf63c0-e411-4943-b77b-48a70a919e7d",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "project-mat-storage"
+    }
   ]
   /**
    * Environment Variables

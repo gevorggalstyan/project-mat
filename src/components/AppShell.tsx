@@ -5,7 +5,7 @@ import { Layout, Menu, Space, Switch, Typography, theme } from "antd";
 import type { MenuProps } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo, memo } from "react";
 import { useThemeMode } from "@/app/antd-registry";
 import type { UserIdentity } from "@/lib/user";
 
@@ -26,7 +26,7 @@ type AppShellProps = {
 	user: UserIdentity;
 };
 
-export default function AppShell({ children, title, subtitle, user }: AppShellProps) {
+function AppShell({ children, title, subtitle, user }: AppShellProps) {
 	const { mode, setTheme, isReady } = useThemeMode();
 	const isDark = mode === "dark";
 	const pathname = usePathname() ?? "/";
@@ -116,4 +116,7 @@ export default function AppShell({ children, title, subtitle, user }: AppShellPr
 		</Layout>
 	);
 }
+
+// Memoize AppShell to prevent unnecessary re-renders
+export default memo(AppShell);
 
