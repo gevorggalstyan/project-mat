@@ -7,14 +7,7 @@ import { env } from "./env";
 const CF_EMAIL_HEADER = "cf-access-authenticated-user-email";
 const CF_NAME_HEADER = "cf-access-authenticated-user-name";
 
-export class AuthenticationError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "AuthenticationError";
-  }
-}
-
-export async function getUserIdentity(): Promise<UserIdentity> {
+export async function getUserIdentity(): Promise<UserIdentity | null> {
   const hdrs = await headers();
   const email = hdrs.get(CF_EMAIL_HEADER);
   const name = hdrs.get(CF_NAME_HEADER) ?? undefined;
@@ -36,8 +29,6 @@ export async function getUserIdentity(): Promise<UserIdentity> {
     };
   }
 
-  // In production without Cloudflare Access configured, deny access
-  throw new AuthenticationError(
-    "This application requires Cloudflare Zero Trust authentication. Please contact your administrator for access."
-  );
+  // In production without Cloudflare Access, return null
+  return null;
 }
