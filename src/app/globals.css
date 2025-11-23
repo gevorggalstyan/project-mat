@@ -1,1 +1,28 @@
-@import "antd/dist/reset.css";
+:root {
+	color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+	color-scheme: dark;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-geist-mono), "IBM Plex Mono", "Fira Code", monospace;
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+.app-shell {
+	min-height: 100vh;
+	transition: opacity 0.2s ease;
+}
+
+.app-shell--hidden {
+	opacity: 0;
+}
+
+.app-shell--visible {
+	opacity: 1;
+}
