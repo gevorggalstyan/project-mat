@@ -93,14 +93,17 @@ export default function AntdRegistry({
 		}
 	}, [mode, resolved, shouldPersist]);
 
-	useServerInsertedHTML(() => (
-		<style
-			id="antd"
-			dangerouslySetInnerHTML={{
-				__html: extractStyle(cache, true),
-			}}
-		/>
-	));
+	// Disabled for Cloudflare Workers compatibility
+	// The SSR style extraction causes issues with streaming on edge runtime
+	// Ant Design styles will load client-side instead
+	// useServerInsertedHTML(() => (
+	// 	<style
+	// 		id="antd"
+	// 		dangerouslySetInnerHTML={{
+	// 			__html: extractStyle(cache, true),
+	// 		}}
+	// 	/>
+	// ));
 
 	const themeConfig = useMemo(() => buildThemeConfig(mode), [mode]);
 	const handleSetTheme = useCallback((value: ThemeMode) => {
