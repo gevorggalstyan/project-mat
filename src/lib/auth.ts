@@ -7,6 +7,13 @@ import { env } from "./env";
 const CF_EMAIL_HEADER = "cf-access-authenticated-user-email";
 const CF_NAME_HEADER = "cf-access-authenticated-user-name";
 
+export class AuthenticationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "AuthenticationError";
+  }
+}
+
 export async function getUserIdentity(): Promise<UserIdentity> {
   const hdrs = await headers();
   const email = hdrs.get(CF_EMAIL_HEADER);
@@ -20,21 +27,17 @@ export async function getUserIdentity(): Promise<UserIdentity> {
     };
   }
 
-  if (!env.LOCAL_DEV_IDENTITY_ENABLED) {
-    throw new Error(
-      "Missing Cloudflare headers and LOCAL_DEV_IDENTITY_ENABLED is not 'true'. Enable it in .env.local for local development only."
-    );
+  // In local development, use fallback identity
+  if (env.LOCAL_DEV_IDENTITY_ENABLED && env.LOCAL_DEV_USER_EMAIL) {
+    return {
+      email: env.LOCAL_DEV_USER_EMAIL,
+      name: env.LOCAL_DEV_USER_NAME,
+      source: "local",
+    };
   }
 
-  if (!env.LOCAL_DEV_USER_EMAIL) {
-    throw new Error(
-      "LOCAL_DEV_USER_EMAIL is missing. Create .env.local with LOCAL_DEV_USER_EMAIL and LOCAL_DEV_USER_NAME and set LOCAL_DEV_IDENTITY_ENABLED=true."
-    );
-  }
-
-  return {
-    email: env.LOCAL_DEV_USER_EMAIL,
-    name: env.LOCAL_DEV_USER_NAME,
-    source: "local",
-  };
+  // In production without Cloudflare Access configured, deny access
+  throw new AuthenticationError(
+    "This application requires Cloudflare Zero Trust authentication. Please contact your administrator for access."
+  );
 }

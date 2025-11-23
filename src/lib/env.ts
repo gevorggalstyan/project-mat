@@ -38,7 +38,15 @@ function validateEnv() {
         console.error(`  - ${err.path.join(".")}: ${err.message}`);
       });
     }
-    throw new Error("Invalid environment variables");
+    // In production on Cloudflare, return defaults instead of throwing
+    console.warn("⚠️ Using default environment values");
+    return {
+      NODE_ENV: (process.env.NODE_ENV as "development" | "production" | "test") || "production",
+      LOCAL_DEV_IDENTITY_ENABLED: false,
+      LOCAL_DEV_USER_EMAIL: undefined,
+      LOCAL_DEV_USER_NAME: undefined,
+      ENABLE_TEST_DB_PAGE: false,
+    };
   }
 }
 
