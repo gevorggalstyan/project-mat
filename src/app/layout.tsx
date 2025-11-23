@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Data Capability Solution",
-	description: "Data Capability Solution",
+	title: "Data Capability Solutions",
+	description: "Data Capability Solutions",
 };
 
 export default function RootLayout({
