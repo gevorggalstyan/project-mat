@@ -1,17 +1,8 @@
-"use client";
+import { getUserIdentity } from "@/lib/auth";
+import SettingsView from "@/components/views/SettingsView";
 
-import { Typography } from "antd";
-import AppShell from "@/components/AppShell";
-
-export default function SettingsPage() {
-	return (
-		<AppShell>
-			<Typography.Title level={3}>Workspace Settings</Typography.Title>
-			<Typography.Paragraph>
-				Configure access, environments, integrations, and feature toggles for the DCS360 workspace. This will
-				eventually hook into authentication providers and deployment controls.
-			</Typography.Paragraph>
-		</AppShell>
-	);
+export default async function SettingsPage() {
+	const user = await getUserIdentity();
+	return <SettingsView user={user} />;
 }
 

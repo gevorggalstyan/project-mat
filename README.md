@@ -8,7 +8,15 @@ Read the documentation at https://opennext.js.org/cloudflare.
 
 ## Develop
 
-Run the Next.js development server:
+Create a `.env.local` so local development can explicitly mock the Cloudflare Access headers. Opt in by setting:
+
+```bash
+LOCAL_DEV_IDENTITY_ENABLED=true
+LOCAL_DEV_USER_EMAIL=dev@dcs360.local
+LOCAL_DEV_USER_NAME=Local Developer
+```
+
+Then run the Next.js development server:
 
 ```bash
 npm run dev

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useMemo } from "react";
 import { useThemeMode } from "@/app/antd-registry";
+import type { UserIdentity } from "@/lib/user";
 
 const navItems = [
 	{ key: "dashboard", label: "Dashboard", path: "/" },
@@ -22,11 +23,10 @@ type AppShellProps = {
 	children: ReactNode;
 	title?: string;
 	subtitle?: string;
+	user: UserIdentity;
 };
 
-const userEmail = "analyst@company.com";
-
-export default function AppShell({ children, title, subtitle }: AppShellProps) {
+export default function AppShell({ children, title, subtitle, user }: AppShellProps) {
 	const { mode, setTheme, isReady } = useThemeMode();
 	const isDark = mode === "dark";
 	const pathname = usePathname() ?? "/";
@@ -76,7 +76,7 @@ export default function AppShell({ children, title, subtitle }: AppShellProps) {
 						aria-label="Toggle dark mode"
 						disabled={!isReady}
 					/>
-					<Typography.Text strong>{userEmail}</Typography.Text>
+					<Typography.Text strong>{user.name ?? user.email}</Typography.Text>
 				</Space>
 			</Layout.Header>
 			<Layout>
