@@ -308,12 +308,12 @@ export default function ContractDetailView({ user, contract }: ContractDetailVie
 						<Typography.Title level={5}>
 							Fundamentals
 							<InfoTooltip text={
-								<div>
-									<div>General information identifying the data contract.</div>
-									<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
-										This section defines the "who, what, and where" of the data contract.
+									<div>
+										<div>General information identifying the data contract.</div>
+										<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
+											This section defines the &quot;who, what, and where&quot; of the data contract.
+										</div>
 									</div>
-								</div>
 							} />
 						</Typography.Title>
 
@@ -856,7 +856,7 @@ export default function ContractDetailView({ user, contract }: ContractDetailVie
 					<Form.Item 
 						name="username" 
 						label="Username" 
-						tooltip="The user's username or email."
+						tooltip="The user&apos;s username or email."
 						rules={[{ required: true }]}
 					>
 						<Input />
@@ -864,7 +864,7 @@ export default function ContractDetailView({ user, contract }: ContractDetailVie
 					<Form.Item 
 						name="name" 
 						label="Name"
-						tooltip="The user's full name."
+						tooltip="The user&apos;s full name."
 					>
 						<Input />
 					</Form.Item>
@@ -873,7 +873,7 @@ export default function ContractDetailView({ user, contract }: ContractDetailVie
 						label="Role"
 						tooltip={
 							<div>
-								<div>The user's job role.</div>
+								<div>The user&apos;s job role.</div>
 								<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
 									Example: <code>Data Scientist</code>, <code>Owner</code>, <code>Data Steward</code>
 								</div>

@@ -5,6 +5,7 @@ import { Tabs, Button, Typography, Space, Tag, Card, Form, Input, Select, App, D
 import { EditOutlined, ArrowLeftOutlined, AppstoreOutlined, SaveOutlined, CloseOutlined, PlusOutlined, DeleteOutlined, LinkOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import AppShell from "@/components/AppShell";
 import InfoTooltip from "@/components/InfoTooltip";
+import TypeIcon from "@/components/TypeIcon";
 import type { UserIdentity } from "@/lib/user";
 import type { DataProductWithRelations } from "@/app/products/actions";
 import { updateDataProduct } from "@/app/products/actions";
@@ -837,7 +838,7 @@ export default function ProductDetailView({ user, product }: ProductDetailViewPr
 					<Form.Item 
 						name="username" 
 						label="Username" 
-						tooltip="The user's username or email."
+						tooltip="The user&apos;s username or email."
 						rules={[{ required: true }]}
 					>
 						<Input />
@@ -845,14 +846,21 @@ export default function ProductDetailView({ user, product }: ProductDetailViewPr
 					<Form.Item 
 						name="name" 
 						label="Name"
-						tooltip="The user's full name."
+						tooltip="The user&apos;s full name."
 					>
 						<Input />
 					</Form.Item>
 					<Form.Item 
 						name="role" 
 						label="Role"
-						tooltip="The user's job role."
+						tooltip={
+							<div>
+								<div>The user&apos;s job role.</div>
+								<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
+									Example: <code>Owner</code>, <code>Data Steward</code>
+								</div>
+							</div>
+						}
 					>
 						<Input />
 					</Form.Item>

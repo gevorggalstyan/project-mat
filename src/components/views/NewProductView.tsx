@@ -195,7 +195,7 @@ export default function NewProductView({ user }: NewProductViewProps) {
 									<div>
 										<div>Intended purpose for the data product.</div>
 										<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
-											Example: "Enterprise view of a customer combining online and offline data."
+											Example: &quot;Enterprise view of a customer combining online and offline data.&quot;
 										</div>
 									</div>
 								}
@@ -210,7 +210,7 @@ export default function NewProductView({ user }: NewProductViewProps) {
 									<div>
 										<div>Technical, compliance, and legal limitations for data use.</div>
 										<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
-											Example: "No known limitations." or "GDPR restrictions apply."
+											Example: &quot;No known limitations.&quot; or &quot;GDPR restrictions apply.&quot;
 										</div>
 									</div>
 								}
@@ -228,7 +228,7 @@ export default function NewProductView({ user }: NewProductViewProps) {
 									<div>
 										<div>Recommended usage of the data product.</div>
 										<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
-											Example: "Check the various artefacts for their own description."
+											Example: &quot;Check the various artefacts for their own description.&quot;
 										</div>
 									</div>
 								}

@@ -19,7 +19,9 @@ export default function SettingsView({ user }: SettingsViewProps) {
 					eventually hook into authentication providers and deployment controls.
 				</>
 			}
-		/>
+		>
+			<div>Settings content will go here</div>
+		</AppShell>
 	);
 }
 

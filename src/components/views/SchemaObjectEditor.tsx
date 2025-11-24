@@ -296,7 +296,7 @@ export default function SchemaObjectEditor({ contractId, schemaObject, onClose }
 								<div>
 									<div>Description of the element.</div>
 									<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
-										Example: "Provides core payment metrics"
+										Example: &quot;Provides core payment metrics&quot;
 									</div>
 								</div>
 							}
@@ -492,12 +492,12 @@ export default function SchemaObjectEditor({ contractId, schemaObject, onClose }
 						name="name" 
 						label="Rule Name"
 						tooltip={
-							<div>
-								<div>A short name for the rule.</div>
-								<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
-									Example: "Fewer than 10 duplicate names"
+								<div>
+									<div>A short name for the rule.</div>
+									<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
+										Example: &quot;Fewer than 10 duplicate names&quot;
+									</div>
 								</div>
-							</div>
 						}
 					>
 						<Input />

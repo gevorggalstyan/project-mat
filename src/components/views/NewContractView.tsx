@@ -96,7 +96,7 @@ export default function NewContractView({ user }: NewContractViewProps) {
 									<div>
 										<div>General information identifying the data contract.</div>
 										<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
-											This section defines the "who, what, and where" of the data contract.
+											This section defines the &quot;who, what, and where&quot; of the data contract.
 										</div>
 									</div>
 								} />
@@ -242,7 +242,7 @@ export default function NewContractView({ user }: NewContractViewProps) {
 									<div>
 										<div>Intended purpose for the provided data. Why does this data exist?</div>
 										<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
-											Example: "Views built on top of the seller tables for financial reporting."
+											Example: &quot;Views built on top of the seller tables for financial reporting.&quot;
 										</div>
 									</div>
 								}
@@ -260,7 +260,7 @@ export default function NewContractView({ user }: NewContractViewProps) {
 									<div>
 										<div>Technical, compliance, and legal limitations for data use. What should users be aware of?</div>
 										<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
-											Example: "Data is updated daily at 2 AM UTC. Not for real-time use."
+											Example: &quot;Data is updated daily at 2 AM UTC. Not for real-time use.&quot;
 										</div>
 									</div>
 								}
@@ -278,7 +278,7 @@ export default function NewContractView({ user }: NewContractViewProps) {
 									<div>
 										<div>Recommended usage of the data. How should this data be used?</div>
 										<div style={{ marginTop: 8, fontSize: "0.9em", opacity: 0.8 }}>
-											Example: "Join with customer_dimension on customer_id."
+											Example: &quot;Join with customer_dimension on customer_id.&quot;
 										</div>
 									</div>
 								}

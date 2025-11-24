@@ -121,26 +121,30 @@ export async function getDataProduct(id: string): Promise<Result<DataProductWith
 		const tags = await db.select().from(schema.productTags).where(eq(schema.productTags.productId, id)).all();
 		
 		// Fetch input ports with contract names
-		const inputPorts = await db
-			.select({
-				...getTableColumns(schema.productInputPorts),
-				contractName: schema.dataContracts.name
-			})
+		const inputPortsRows = await db
+			.select()
 			.from(schema.productInputPorts)
 			.leftJoin(schema.dataContracts, eq(schema.productInputPorts.contractId, schema.dataContracts.id))
 			.where(eq(schema.productInputPorts.productId, id))
 			.all();
 
+		const inputPorts = inputPortsRows.map((row) => ({
+			...row.product_input_ports,
+			contractName: row.data_contracts?.name ?? null,
+		}));
+
 		// Fetch output ports with contract names
-		const outputPorts = await db
-			.select({
-				...getTableColumns(schema.productOutputPorts),
-				contractName: schema.dataContracts.name
-			})
+		const outputPortsRows = await db
+			.select()
 			.from(schema.productOutputPorts)
 			.leftJoin(schema.dataContracts, eq(schema.productOutputPorts.contractId, schema.dataContracts.id))
 			.where(eq(schema.productOutputPorts.productId, id))
 			.all();
+
+		const outputPorts = outputPortsRows.map((row) => ({
+			...row.product_output_ports,
+			contractName: row.data_contracts?.name ?? null,
+		}));
 
 		const managementPorts = await db.select().from(schema.productManagementPorts).where(eq(schema.productManagementPorts.productId, id)).all();
 		const teamMembers = await db.select().from(schema.productTeamMembers).where(eq(schema.productTeamMembers.productId, id)).all();

@@ -52,7 +52,7 @@ export default function ProductsView({ user, initialProducts, initialTotal }: Pr
 			title: "Name",
 			dataIndex: "name",
 			key: "name",
-			fixed: "left",
+			fixed: "left" as const,
 			width: 300,
 			render: (name: string | null, record: DataProductListItem) => (
 				<Link href={`/products/${record.id}`}>

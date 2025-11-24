@@ -52,7 +52,7 @@ export default function ContractsView({ user, initialContracts, initialTotal }: 
 			title: "Name",
 			dataIndex: "name",
 			key: "name",
-			fixed: "left",
+			fixed: "left" as const,
 			width: 300,
 			render: (name: string | null, record: DataContractListItem) => (
 				<Link href={`/contracts/${record.id}`}>

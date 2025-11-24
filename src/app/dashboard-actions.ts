@@ -16,8 +16,8 @@ export async function getDashboardStats(): Promise<DashboardStats> {
 	try {
 		const db = await getDb();
 
-		const [contractCount] = await db.select({ count: count() }).from(dataContracts);
-		const [productCount] = await db.select({ count: count() }).from(dataProducts);
+		const contractCount = await db.$count(dataContracts);
+		const productCount = await db.$count(dataProducts);
 
 		const recentContracts = await db
 			.select()
@@ -32,8 +32,8 @@ export async function getDashboardStats(): Promise<DashboardStats> {
 			.limit(5);
 
 		return {
-			contractCount: contractCount.count,
-			productCount: productCount.count,
+			contractCount,
+			productCount,
 			recentContracts,
 			recentProducts,
 		};
