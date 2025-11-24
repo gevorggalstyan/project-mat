@@ -5,6 +5,7 @@ import { Layout, Menu, Space, Switch, Typography, theme, Dropdown, Avatar } from
 import type { MenuProps } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { ReactNode, useMemo, memo } from "react";
 import { useThemeMode } from "@/app/antd-registry";
 import type { UserIdentity } from "@/lib/user";
@@ -101,13 +102,16 @@ function AppShell({ children, title, subtitle, user }: AppShellProps) {
 					borderBottom: `1px solid ${colorSplit}`,
 				}}
 			>
-				<Typography.Title
-					level={4}
-					style={{ margin: 0 }}
-				>
-					DCS
-					<sup>360</sup>
-				</Typography.Title>
+				<div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+					<Image src="/favicon.svg" alt="DCS360 Logo" width={32} height={32} priority />
+					<Typography.Title
+						level={4}
+						style={{ margin: 0 }}
+					>
+						DCS
+						<sup>360</sup>
+					</Typography.Title>
+				</div>
 				<Space size={16} align="center">
 					<Switch
 						checked={isDark}

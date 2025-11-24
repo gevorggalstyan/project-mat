@@ -1,0 +1,28 @@
+<svg width="300" height="100" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1677ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0958d9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon Part -->
+  <g transform="translate(10, 10) scale(0.8)">
+    <!-- Top Face -->
+    <path d="M50 10 L90 30 L50 50 L10 30 Z" fill="#69b1ff" />
+    <!-- Right Face -->
+    <path d="M50 50 L90 30 L90 75 L50 95 Z" fill="#1677ff" />
+    <!-- Left Face -->
+    <path d="M50 50 L50 95 L10 75 L10 30 Z" fill="#003eb3" />
+    
+    <!-- Optional: Internal Connection/Node to imply 'Data' -->
+    <circle cx="50" cy="50" r="5" fill="white" fill-opacity="0.8" />
+    <circle cx="50" cy="10" r="2" fill="white" fill-opacity="0.5" />
+    <circle cx="90" cy="30" r="2" fill="white" fill-opacity="0.5" />
+    <circle cx="10" cy="30" r="2" fill="white" fill-opacity="0.5" />
+  </g>
+
+  <!-- Text Part -->
+  <text x="100" y="65" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="bold" font-size="40" fill="#1f1f1f">DCS<tspan fill="#1677ff">360</tspan></text>
+</svg>
+
