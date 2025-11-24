@@ -1,7 +1,7 @@
 "use client";
 
-import { MoonOutlined, SunOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Layout, Menu, Space, Switch, Typography, theme, Button } from "antd";
+import { MoonOutlined, SunOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import { Layout, Menu, Space, Switch, Typography, theme, Dropdown, Avatar } from "antd";
 import type { MenuProps } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -48,6 +48,42 @@ function AppShell({ children, title, subtitle, user }: AppShellProps) {
 		),
 	}));
 
+	const userMenuItems: MenuProps["items"] = [
+		{
+			key: "email",
+			label: (
+				<Typography.Text style={{ fontSize: "14px" }} type="secondary">
+					{user.email}
+				</Typography.Text>
+			),
+			disabled: true,
+		},
+		{
+			type: "divider",
+		},
+		{
+			key: "logout",
+			label: "Logout",
+			icon: <LogoutOutlined />,
+			onClick: () => {
+				window.location.href = "/cdn-cgi/access/logout";
+			},
+		},
+	];
+
+	// Get initials from name or email
+	const getInitials = (name?: string, email?: string) => {
+		if (name) {
+			return name
+				.split(" ")
+				.map((n) => n[0])
+				.join("")
+				.toUpperCase()
+				.slice(0, 2);
+		}
+		return email?.charAt(0).toUpperCase() || "U";
+	};
+
 	return (
 		<Layout style={{ minHeight: "100vh", background: colorBgLayout }}>
 			<Layout.Header
@@ -76,17 +112,15 @@ function AppShell({ children, title, subtitle, user }: AppShellProps) {
 						aria-label="Toggle dark mode"
 						disabled={!isReady}
 					/>
-					<Typography.Text strong>{user.name ?? user.email}</Typography.Text>
-					<Button
-						type="text"
-						icon={<LogoutOutlined />}
-						onClick={() => {
-							window.location.href = "/cdn-cgi/access/logout";
-						}}
-						aria-label="Logout"
-					>
-						Logout
-					</Button>
+					<Dropdown menu={{ items: userMenuItems }} placement="bottomRight" trigger={["click"]}>
+						<Avatar
+							style={{ backgroundColor: "#1890ff", cursor: "pointer" }}
+							icon={<UserOutlined />}
+							size="default"
+						>
+							{getInitials(user.name, user.email)}
+						</Avatar>
+					</Dropdown>
 				</Space>
 			</Layout.Header>
 			<Layout>
