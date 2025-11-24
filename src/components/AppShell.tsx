@@ -21,8 +21,8 @@ type RoutePath = (typeof navItems)[number]["path"];
 
 type AppShellProps = {
 	children: ReactNode;
-	title?: string;
-	subtitle?: string;
+	title?: ReactNode;
+	subtitle?: ReactNode;
 	user: UserIdentity;
 };
 
@@ -35,8 +35,13 @@ function AppShell({ children, title, subtitle, user }: AppShellProps) {
 	} = theme.useToken();
 
 	const selectedKey = useMemo(() => {
-		const current = navItems.find((item) => pathname === item.path);
-		return current?.key ?? "contracts";
+		// First try exact match (handles root "/" correctly)
+		const exactMatch = navItems.find((item) => pathname === item.path);
+		if (exactMatch) return exactMatch.key;
+
+		// Then try prefix match for non-root paths
+		const prefixMatch = navItems.find((item) => item.path !== "/" && pathname.startsWith(item.path));
+		return prefixMatch?.key ?? "dashboard";
 	}, [pathname]);
 
 	const menuItems: MenuProps["items"] = navItems.map((item) => ({
@@ -98,7 +103,7 @@ function AppShell({ children, title, subtitle, user }: AppShellProps) {
 			>
 				<Typography.Title
 					level={4}
-					style={{ margin: 0, fontFamily: "var(--font-geist-mono), 'IBM Plex Mono', monospace" }}
+					style={{ margin: 0 }}
 				>
 					DCS
 					<sup>360</sup>
@@ -147,7 +152,7 @@ function AppShell({ children, title, subtitle, user }: AppShellProps) {
 					}}
 				>
 					{title && (
-						<Typography.Title level={3} style={{ marginBottom: 16 }}>
+						<Typography.Title level={3} style={{ marginBottom: 16, marginTop: 0 }}>
 							{title}
 						</Typography.Title>
 					)}

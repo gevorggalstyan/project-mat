@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "6df1d7c5-6650-48c9-8363-afbf7e82f296",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "3b84081e-10f6-45ba-82c6-bfa2cec25d80",
+  "prevId": "6df1d7c5-6650-48c9-8363-afbf7e82f296",
   "tables": {
     "contract_quality_rules": {
       "name": "contract_quality_rules",
@@ -1384,6 +1384,19 @@
           ],
           "onDelete": "cascade",
           "onUpdate": "no action"
+        },
+        "product_input_ports_contract_id_data_contracts_id_fk": {
+          "name": "product_input_ports_contract_id_data_contracts_id_fk",
+          "tableFrom": "product_input_ports",
+          "tableTo": "data_contracts",
+          "columnsFrom": [
+            "contract_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -1568,6 +1581,19 @@
             "id"
           ],
           "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "product_output_ports_contract_id_data_contracts_id_fk": {
+          "name": "product_output_ports_contract_id_data_contracts_id_fk",
+          "tableFrom": "product_output_ports",
+          "tableTo": "data_contracts",
+          "columnsFrom": [
+            "contract_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
@@ -1814,6 +1840,60 @@
           "onUpdate": "no action"
         }
       },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "users": {
+      "name": "users",
+      "columns": {
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "source": {
+          "name": "source",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'cloudflare'"
+        },
+        "last_seen_at": {
+          "name": "last_seen_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "users_last_seen_idx": {
+          "name": "users_last_seen_idx",
+          "columns": [
+            "last_seen_at"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "checkConstraints": {}

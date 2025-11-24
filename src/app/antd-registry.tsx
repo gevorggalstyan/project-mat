@@ -5,7 +5,7 @@ import {
 	createCache,
 	extractStyle,
 } from "@ant-design/cssinjs";
-import { ConfigProvider, theme as antdTheme } from "antd";
+import { ConfigProvider, theme as antdTheme, App } from "antd";
 import type { ThemeConfig } from "antd/es/config-provider";
 import { useServerInsertedHTML } from "next/navigation";
 import {
@@ -39,7 +39,7 @@ const ThemeContext = createContext<ThemeContextValue>({
 const buildThemeConfig = (mode: ThemeMode): ThemeConfig => ({
 	algorithm: mode === "dark" ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
 	token: {
-		fontFamily: "var(--font-geist-sans), 'Inter', system-ui, sans-serif",
+		fontFamily: "var(--font-geist-mono), 'IBM Plex Mono', 'Fira Code', monospace",
 	},
 });
 
@@ -123,15 +123,17 @@ export default function AntdRegistry({
 		<ThemeContext.Provider value={contextValue}>
 			<StyleProvider cache={cache}>
 				<ConfigProvider theme={themeConfig}>
-					<div
-						className={
-							hydrated
-								? "app-shell app-shell--visible"
-								: "app-shell app-shell--hidden"
-						}
-					>
-						{children}
-					</div>
+					<App>
+						<div
+							className={
+								hydrated
+									? "app-shell app-shell--visible"
+									: "app-shell app-shell--hidden"
+							}
+						>
+							{children}
+						</div>
+					</App>
 				</ConfigProvider>
 			</StyleProvider>
 		</ThemeContext.Provider>

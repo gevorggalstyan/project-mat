@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Data Capability Solutions",
+	title: "DCS360 - Data Capability Solutions",
 	description: "Data Capability Solutions",
 };
 
