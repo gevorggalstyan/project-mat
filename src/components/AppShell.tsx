@@ -1,7 +1,7 @@
 "use client";
 
-import { MoonOutlined, SunOutlined } from "@ant-design/icons";
-import { Layout, Menu, Space, Switch, Typography, theme } from "antd";
+import { MoonOutlined, SunOutlined, LogoutOutlined } from "@ant-design/icons";
+import { Layout, Menu, Space, Switch, Typography, theme, Button } from "antd";
 import type { MenuProps } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -77,6 +77,16 @@ function AppShell({ children, title, subtitle, user }: AppShellProps) {
 						disabled={!isReady}
 					/>
 					<Typography.Text strong>{user.name ?? user.email}</Typography.Text>
+					<Button
+						type="text"
+						icon={<LogoutOutlined />}
+						onClick={() => {
+							window.location.href = "/cdn-cgi/access/logout";
+						}}
+						aria-label="Logout"
+					>
+						Logout
+					</Button>
 				</Space>
 			</Layout.Header>
 			<Layout>
@@ -85,13 +95,15 @@ function AppShell({ children, title, subtitle, user }: AppShellProps) {
 					theme={isDark ? "dark" : "light"}
 					style={{ background: colorBgContainer, borderRight: `1px solid ${colorSplit}` }}
 				>
-					<Menu
-						mode="inline"
-						items={menuItems}
-						selectedKeys={[selectedKey]}
-						style={{ height: "100%", borderInlineEnd: 0 }}
-						theme={isDark ? "dark" : "light"}
-					/>
+					<div suppressHydrationWarning>
+						<Menu
+							mode="inline"
+							items={menuItems}
+							selectedKeys={[selectedKey]}
+							style={{ height: "100%", borderInlineEnd: 0 }}
+							theme={isDark ? "dark" : "light"}
+						/>
+					</div>
 				</Layout.Sider>
 				<Layout.Content
 					style={{
