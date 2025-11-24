@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	/* config options here */
+	serverExternalPackages: ["better-sqlite3"],
+	optimizePackageImports: ["antd", "@ant-design/icons"],
 };
 
 export default nextConfig;
