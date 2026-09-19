@@ -21,7 +21,7 @@
 		"@opennextjs/cloudflare": "^1.13.1",
 		"antd": "^6.0.0",
 		"dayjs": "^1.11.19",
-		"drizzle-orm": "^0.44.7",
+		"drizzle-orm": "^0.45.0",
 		"fuse.js": "^7.1.0",
 		"nanoid": "^5.1.6",
 		"next": "15.1.6",
